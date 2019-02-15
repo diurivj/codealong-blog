@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+</head>
+<body>
+  <nav id="principalnav">
+    {{#if loggedUser}}
+    <span>
+      <img src="/assets/IH_BLUE-LOGO_100x100.png" alt="logo" width="50">
+    </span>
+    <span>
+      <a href="/">Home</a>
+      <a href="/profile">Profile</a>
+      <a href="/logout">Logout</a>
+    </span>
+    {{else}}
+    <span>
+      <img src="/assets/IH_BLUE-LOGO_100x100.png" alt="logo" width="50">
+    </span>
+    <span>
+      <a href="/">Home</a>
+      <a href="/signup">Signup</a>
+      <a href="/login">Login</a>
+    </span>
+    {{/if}}
+  </nav>
+
+  {{{body}}}
+
+  <script src="/javascripts/script.js"></script>
+</body>
+</html>
