@@ -1,2 +1,6 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<h1>All posts</h1>
+{{#each posts as |post|}}
+  <h2>{{post.title}}</h2>
+  <img src="{{post.cover}}" alt="cover" width="100px">
+  <a href="/posts/{{post._id}}">View more</a>
+{{/each}}

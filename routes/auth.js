@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const User = require('../models/User')
+const Post = require('../models/Post')
 const passport = require('passport')
 
 function isLogged(req, res, next) {
@@ -35,7 +36,13 @@ router.post('/login', passport.authenticate('local'), (req, res, next) => {
 })
 
 router.get('/profile', isLogged, (req, res, next) => {
-  res.render('auth/profile')
+  User.findById(req.user._id).populate('posts')
+    .then(user => {
+      res.render('auth/profile', user)
+    })
+    .catch(error => {
+      res.render('auth/profile', { error })
+    })
 })
 
 router.get('/logout', (req, res, next) => {

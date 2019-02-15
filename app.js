@@ -76,6 +76,8 @@ function isLogged(req, res, next) {
 
 const index = require('./routes/index')
 const auth = require('./routes/auth')
+const posts = require('./routes/posts')
+app.use('/posts', isLogged, posts)
 app.use('/', isLogged, auth)
 app.use('/', isLogged, index)
 

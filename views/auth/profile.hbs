@@ -1,8 +1,18 @@
 <section id="profile">
   <div id="posts">
-
+    <h2>My posts</h2>
+    {{#each posts}}
+      <img src="{{this.cover}}" alt="cover" width="100px">
+      <h3>{{this.title}}</h3>
+    {{/each}}
   </div>
   <div id="panel">
-
+    <h2>Create a new post</h2>
+    <form action="/posts/create" method="POST" enctype="multipart/form-data">
+      <input type="file" name="cover" required="true">
+      <input type="text" name="title">
+      <textarea name="body"cols="30" rows="10"></textarea>
+      <input type="submit" value="Create new post">
+    </form>
   </div>
 </section>
