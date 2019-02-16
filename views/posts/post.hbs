@@ -1,3 +1,14 @@
 <img src="{{cover}}" alt="">
 <h2>{{title}}</h2>
 <p>{{body}}</p>
+
+<h3>Comments</h3>
+{{#each comments}}
+  <p>{{this.body}}</p>
+  <h5>{{this.owner.username}}</h5>
+{{/each}}
+
+<form action="/comments/new/{{_id}}" method="POST">
+  <textarea name="body" cols="30" rows="10"></textarea>
+  <input type="submit" value="New comment">
+</form>

@@ -8,9 +8,17 @@ function isAuth(req, res, next) {
   return res.redirect('/login')
 }
 
-router.get('/:id', (req, res, next) => {
+router.get('/:id', isAuth, (req, res, next) => {
   const { id } = req.params
-  Post.findById(id)
+  Post.findById(id).populate({
+    path:'comments',
+    select: ['body', 'owner'],
+    populate:{
+      path:'owner',
+      model:'User',
+      select: 'username'
+    }
+  })
     .then(post => {
       res.render('posts/post', post)
     })

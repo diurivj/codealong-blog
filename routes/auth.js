@@ -36,14 +36,19 @@ router.post('/login', passport.authenticate('local'), (req, res, next) => {
 })
 
 router.get('/profile', isLogged, (req, res, next) => {
-  User.findById(req.user._id).populate('posts')
+  let {username} = req.user
+  if (req.query.username) username = req.query.username
+  User.findOne({ username }).populate('posts')
     .then(user => {
+      console.log(user)
       res.render('auth/profile', user)
     })
     .catch(error => {
       res.render('auth/profile', { error })
     })
 })
+
+router.get('/profile/:id')
 
 router.get('/logout', (req, res, next) => {
   req.logOut()
